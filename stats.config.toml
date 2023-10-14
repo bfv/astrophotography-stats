@@ -1,0 +1,37 @@
+[files]
+#excludedirs=[ "ignore_this", "ngc7635", "ngc7023" ]
+excludedirs=[ "ignore_this" ]
+
+#extr = "Optolong L-eXtreme"
+#lpro = "Optolong L-Pro"
+#haoiii=Altair Ha Oii (4nm)
+
+[telescopes]
+list = [ "esprit", "edgehd" ]
+
+[esprit]
+name = "Skywatcher Esprit 100ED"
+synonyms = [ "skywatcher esprit 10" ]
+
+[edgehd]
+name = "Celestron EdgeHD 925"
+
+########## filters ####################
+[filters]
+list = [ "lextreme", "lpro", "uvir", "haoiii"]
+
+[lextreme]
+name = "Optolong L-eXtreme"
+synonyms = [ "extr" ]
+
+[lpro]
+name = "Optolong L-Pro"
+synonyms = [ "lpro" ]
+
+[uvir]
+name = "Optolong UV/IR"
+synonyms = [ "uvir" ]
+
+[haoiii]
+name = "Altair Ha Oii 4nm" 
+synonyms = [ "haoiii" ]

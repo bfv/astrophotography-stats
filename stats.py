@@ -1,6 +1,7 @@
 import os
 import tomllib
-from photodir import PhotoDir
+from photodir import *
+from generate_stats import *
 
 ignore_dirs = []
 config = {}
@@ -11,8 +12,9 @@ def main():
     photo_dir = get_photo_dir()
     subdirs = get_subdirs(photo_dir)
     eval_dirs(photo_dir, subdirs)
+    #print("files found:", len(files))
+    print_stats()
     
-
 def init_config():
     with open("stats.config.toml", "rb") as f:
         config = tomllib.load(f)
@@ -21,11 +23,10 @@ def init_config():
 
 def get_photo_dir() -> str:
     default_dir = os.path.join(os.getcwd(), "testdata")
-    photo_dir = input(f"Input photo dir [{default_dir}]: ") or default_dir
-    return photo_dir
+    default_dir = input(f"Input photo dir [{default_dir}]: ") or default_dir   
+    return default_dir
 
 def get_subdirs(dir) -> []:
-    print(f"analyse: {dir}")
     evaldirs = os.listdir(dir)
     subdirs = [i for i in evaldirs if i not in ignore_dirs]
     return subdirs
@@ -39,5 +40,7 @@ def eval_dir(dir):
    pdir = PhotoDir(dir)
    files.extend(pdir.photos)
 
-
+def print_stats():
+    generate_stats(files)
+        
 main()

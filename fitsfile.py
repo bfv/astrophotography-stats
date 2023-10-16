@@ -4,10 +4,10 @@ from datetime import *
 
 class FitsFile:
 
-    def __init__(self, filename):
+    def __init__(self, filename, target):
         self.file = filename
         self.__parse_file()
-        #self.to_string()
+        self.target = target
 
     def __parse_file(self):
         try:
@@ -24,7 +24,7 @@ class FitsFile:
         self.observation_date = hdul[0].header['DATE-OBS'] + "Z"
         self.ra = hdul[0].header['RA']
         self.telescope = hdul[0].header['TELESCOP']
-
+         
         # derived
         self.date = self.__get_date(self.observation_date)
         self.software = self.__get_software(hdul)

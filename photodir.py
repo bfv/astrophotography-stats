@@ -7,13 +7,13 @@ class PhotoDir:
     def __init__(self, dir):
         self.rootdir = dir
         self.photos = []
+        self.target = self.__get_object_name(dir)
         self.parse_dir(dir)
 
     def parse_dir(self, dir):
-        print("parse:", dir)
         files = self.get_files(dir, ["fit", "fits"])
         for file in files:
-            file = FitsFile(file)
+            file = FitsFile(file, target=self.target)
             if file.is_fits :
                 self.photos.append(file)
 
@@ -29,6 +29,9 @@ class PhotoDir:
             for file in path.rglob(f"*.{ext}"):
                 files.append(file.absolute())
         return files
-            
+    
+    def __get_object_name(self, dir) -> str:
+        object_name = os.path.basename(os.path.normpath(dir))
+        return object_name
 
 

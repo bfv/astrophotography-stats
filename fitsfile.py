@@ -17,14 +17,19 @@ class FitsFile:
             self.is_fits = False
             return
 
+        # essential info
         self.camera = hdul[0].header['INSTRUME']
-        self.dec = self.ra = hdul[0].header['DEC']
         self.exposure = hdul[0].header['EXPOSURE']
         self.filter = hdul[0].header['FILTER']
         self.observation_date = hdul[0].header['DATE-OBS'] + "Z"
-        self.ra = hdul[0].header['RA']
         self.telescope = hdul[0].header['TELESCOP']
-         
+            
+        try:
+            self.ra = hdul[0].header['RA']
+            self.dec = self.ra = hdul[0].header['DEC']
+        except:
+            pass
+
         # derived
         self.date = self.__get_date(self.observation_date)
         self.software = self.__get_software(hdul)

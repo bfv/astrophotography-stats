@@ -1,6 +1,6 @@
 [files]
-#excludedirs=[ "ignore_this", "ngc7635", "ngc7023" ]
-excludedirs=[ "ignore_this" ]
+defaultdir = 'd:\onedrive\_2023'
+excludedirs = [ "ignore_this" ]
 
 #extr = "Optolong L-eXtreme"
 #lpro = "Optolong L-Pro"

@@ -8,21 +8,28 @@ config = {}
 files = []
 
 def main():
-    init_config()
-    photo_dir = get_photo_dir()
+    config = init_config()
+    #print(config)
+    photo_dir = get_photo_dir(config)
     subdirs = get_subdirs(photo_dir)
     eval_dirs(photo_dir, subdirs)
     #print("files found:", len(files))
     print_stats()
     
-def init_config():
+def init_config() -> {}:
     with open("stats.config.toml", "rb") as f:
-        config = tomllib.load(f)
-    files_section = config["files"]
+        cfg = tomllib.load(f)
+    files_section = cfg["files"]
     ignore_dirs.extend(files_section["excludedirs"])
+    return cfg
 
-def get_photo_dir() -> str:
-    default_dir = os.path.join(os.getcwd(), "testdata")
+def get_photo_dir(config) -> str:
+    files_section = config["files"]
+    try:
+        default_dir = files_section["defaultdir"]
+    except:
+        default_dir = os.path.join(os.getcwd(), "testdata")
+
     default_dir = input(f"Input photo dir [{default_dir}]: ") or default_dir   
     return default_dir
 

@@ -13,10 +13,13 @@ class PhotoDir:
     def parse_dir(self, dir):
         files = self.get_files(dir, ["fit", "fits"])
         for file in files:
-            file = FitsFile(file, target=self.target)
-            if file.is_fits :
-                self.photos.append(file)
-
+            try:
+                file = FitsFile(file, target=self.target)
+                if file.is_fits :
+                    self.photos.append(file)
+            except:
+                pass
+            
     def test(self, filename):
         ext = pathlib.Path(filename).suffix
         print(f"{filename} -> {ext}")

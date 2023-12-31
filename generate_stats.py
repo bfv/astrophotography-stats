@@ -1,9 +1,13 @@
-
-from datetime import *
 import time
+from datetime import timedelta
 from stat_structures import *
 
 dates = {}
+
+def convert_to_hhmmss(seconds):
+    min, sec = divmod(seconds, 60)
+    hour, min = divmod(min, 60)
+    return '%02d:%02d:%02d' % (hour, min, sec)
 
 def generate_stats(files):
     
@@ -25,11 +29,10 @@ def generate_stats(files):
     
     for obs_date in dates_sorted:
         obs = dates[obs_date]
-        #td = timedelta(seconds=obs.integration)
-        hhmm = time.strftime('%Hh %Mm', time.gmtime(obs.integration))
+        hhmm = convert_to_hhmmss(obs.integration)
         print(f"target: {obs.target}, date: {obs.date}, subs: {obs.subs}, total integration: {hhmm}")
     
-    hhmm = time.strftime('%Hh %Mm', time.gmtime(total_integration))
+    hhmm = convert_to_hhmmss(total_integration)
     print("\ntotals:")
     print(f"  subs: {total_subs}")
     print(f"  integration: {hhmm}")

@@ -1,15 +1,14 @@
-import time
-from datetime import timedelta
-from stat_structures import *
+from stat_structures import ObservationTarget
+from fitsfile import FitsFile
 
-dates = {}
+dates: dict[str, ObservationTarget] = {}
 
-def convert_to_hhmmss(seconds):
+def convert_to_hhmmss(seconds: int):
     min, sec = divmod(seconds, 60)
     hour, min = divmod(min, 60)
     return '%02d:%02d:%02d' % (hour, min, sec)
 
-def generate_stats(files):
+def generate_stats(files: list[FitsFile]):
     
     total_subs = 0
     total_integration = 0

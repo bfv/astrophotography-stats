@@ -4,7 +4,7 @@ import tomllib
 from typing import Any
 from tqdm import tqdm
 from photodir import PhotoDir
-from generate_stats import generate_stats
+from generate_stats import generate_stats, generate_csv
 from fitsfile import FitsFile
 
 ignore_dirs: list[str] = []
@@ -43,13 +43,16 @@ def get_subdirs(dir: str) -> list[str]:
 def eval_dirs(rootdir: str, subdirs: list[str]):
     for subdir in tqdm(subdirs, desc ="processing directories", write_bytes=False):
         dir = os.path.join(rootdir, subdir)
-        eval_dir(dir)
+        if os.path.isdir(dir):
+            eval_dir(dir)
 
 def eval_dir(dir: str):
    pdir = PhotoDir(dir)
    files.extend(pdir.photos)
 
 def print_stats():
-    generate_stats(files)
-        
+    print('-' * 80)
+    generate_csv(files)
+    print('-' * 80)
+    
 main()

@@ -2,6 +2,7 @@ import os
 
 from pathlib import Path
 from fitsfile import FitsFile
+from target import get_target_info
 
 class PhotoDir:
 
@@ -35,7 +36,7 @@ class PhotoDir:
         return files
     
     def __get_object_name(self, dir: str) -> str:
-        object_name = os.path.basename(os.path.normpath(dir))
+        object_name = get_target_info(dir)
         return object_name
 
 

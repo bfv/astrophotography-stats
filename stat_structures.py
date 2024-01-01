@@ -9,3 +9,15 @@ class ObservationTarget:
         self.subs = 0
         self.integration = 0
         self.object = object
+
+class MonthData:
+    month: int
+    subs: int
+    integration: int    
+
+    def __init__(self, month: int):
+        self.month = month
+        self.subs = 0
+        self.integration = 0
+    
+    

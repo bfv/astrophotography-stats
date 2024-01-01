@@ -4,7 +4,7 @@ import tomllib
 from typing import Any
 from tqdm import tqdm
 from photodir import PhotoDir
-from generate_stats import generate_stats, generate_csv
+from generate_stats import generate_stats, generate_csv, generate_month_stats
 from fitsfile import FitsFile
 
 ignore_dirs: list[str] = []
@@ -54,5 +54,6 @@ def print_stats():
     print('-' * 80)
     generate_csv(files)
     print('-' * 80)
+    generate_month_stats(files)
     
 main()

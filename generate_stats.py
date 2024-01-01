@@ -1,4 +1,4 @@
-from stat_structures import ObservationTarget
+from stat_structures import ObservationTarget, MonthData
 from fitsfile import FitsFile
 from target import targets
 
@@ -80,3 +80,15 @@ def generate_csv(files: list[FitsFile]):
     print(f";subs:;{total_subs}")
     print(f"; integration;{convert_to_hhmmss(total_integration)}")
 
+def generate_month_stats(files: list[FitsFile]):
+
+    stats: list[MonthData] = []
+    for i in range(12):
+        stats.append(MonthData(i+1))
+
+    for file in files:
+        stats[file.date.month - 1].subs += 1
+        stats[file.date.month - 1].integration += file.exposure
+
+    for stat in stats:
+        print(f"{stat.month};{stat.subs};{stat.integration}")

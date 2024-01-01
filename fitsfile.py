@@ -19,7 +19,7 @@ class FitsFile:
 
         # essential info
         self.camera = hdul[0].header['INSTRUME']
-        self.exposure = hdul[0].header['EXPOSURE']
+        self.exposure = int(hdul[0].header['EXPOSURE'])
         self.filter = hdul[0].header['FILTER']
         self.observation_date = hdul[0].header['DATE-OBS'] + "Z"
         self.telescope = hdul[0].header['TELESCOP']

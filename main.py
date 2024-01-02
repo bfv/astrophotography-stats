@@ -12,18 +12,31 @@ config: dict[str, Any] = {}
 files: list[FitsFile] = []  # list of FitsFile
 
 def main():
-    config = init_config()
+    config = init_general_config()
     photo_dir = get_photo_dir(config)
+    init_dir_config(photo_dir)
+    print(f"ignore dirs: {ignore_dirs}")
     subdirs = get_subdirs(photo_dir)
     eval_dirs(photo_dir, subdirs)
     print_stats()
     
-def init_config() -> dict[str, Any]:
+def init_general_config() -> dict[str, Any]:
     with open("stats.config.toml", "rb") as f:
         cfg = tomllib.load(f)
     files_section = cfg["files"]
     ignore_dirs.extend(files_section["excludedirs"])
     return cfg
+
+def init_dir_config(dir: str):
+    cfgfile = os.path.join(dir, "stats-config.toml")
+    if os.path.exists(cfgfile):
+        with open(cfgfile, "rb") as f:
+            cfg = tomllib.load(f)
+        try:
+            files_section = cfg["files"]
+            ignore_dirs.extend(files_section["excludedirs"]) 
+        except:
+            pass 
 
 def get_photo_dir(config: dict[str, Any]) -> str:
     files_section = config["files"]

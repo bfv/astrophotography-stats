@@ -26,7 +26,7 @@ class FitsFile:
             
         try:
             self.ra = hdul[0].header['RA']
-            self.dec = self.ra = hdul[0].header['DEC']
+            self.dec = hdul[0].header['DEC']
         except:
             pass
 

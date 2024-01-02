@@ -34,18 +34,20 @@ class FitsFile:
         self.date = self.__get_date(self.observation_date)
         self.software = self.__get_software(hdul)
 
-    def to_string(self):
-        print("fits:", self.file)
-        print(f"  telescope : {self.telescope}")
-        print(f"  camera    : {self.camera}")
-        print(f"  filter    : {self.filter}")    
-        print(f"  obs date  : { self.observation_date}")
-        print(f"  date      : { self.date}")
-        print(f"  exposure  : {self.exposure}s")
-        print(f"  RA/Dec    : {self.ra}, {self.dec}")
-        print(f"  software  : {self.software}")
-
-
+    def __str__(self) -> str:
+        str = f'''
+fits: {self.file}
+  telescope : {self.telescope}
+  camera    : {self.camera}
+  filter    : {self.filter}
+  obs date  : { self.observation_date}
+  date      : { self.date}
+  exposure  : {self.exposure}s
+  RA/Dec    : {self.ra}, {self.dec}
+  software  : {self.software}
+        '''
+        return str
+    
     def __get_date(self, date_str):
         #date_format = '%Y-%m-%dT%H:%M:%SZ'
         datetime_obj = datetime.fromisoformat(date_str) - timedelta(hours=12)

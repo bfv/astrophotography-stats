@@ -87,8 +87,11 @@ def generate_month_stats(files: list[FitsFile]):
         stats.append(MonthData(i+1))
 
     for file in files:
-        stats[file.date.month - 1].subs += 1
-        stats[file.date.month - 1].integration += file.exposure
+        month = file.date.month - 1
+        stats[month].subs += 1
+        stats[month].integration += file.exposure
+        stats[month].nights.add(file.date)
 
+    print(f"month;subs;integration (h);nights")
     for stat in stats:
-        print(f"{stat.month};{stat.subs};{stat.integration}")
+        print(f"{stat.month};{stat.subs};{"{:.1f}".format(stat.integration/3600)};{len(stat.nights)}")

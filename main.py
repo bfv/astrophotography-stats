@@ -21,7 +21,7 @@ def main():
     print_stats()
     
 def init_general_config() -> dict[str, Any]:
-    with open("stats.config.toml", "rb") as f:
+    with open("stats-config.toml", "rb") as f:
         cfg = tomllib.load(f)
     files_section = cfg["files"]
     ignore_dirs.extend(files_section["excludedirs"])

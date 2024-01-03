@@ -1,0 +1,52 @@
+[files]
+defaultdir = 'd:\onedrive\_2023'
+excludedirs = [ "various" ]
+
+#################### telescopes ####################
+[telescopes]
+list = [ "esprit", "edgehd", "edgehd_f7" ]
+
+[esprit]
+name = "Skywatcher Esprit 100ED"
+short = "Esprit 100"
+fl = 550
+synonyms = [ "skywatcher esprit 10", "Skywatcher Esprit 100ED" ]
+
+[edgehd]
+name = "Celestron EdgeHD 925"
+short = "EdgeHD 925"
+fl = 2350
+synonyms = []
+
+[edgehd_f7]
+name = "Celestron EdgeHD 925 f/7"
+short = "EdgeHD 925 f7"
+fl = 1607
+synonyms = [ "Celestron EdgeHD 925" ]
+
+
+
+#################### filters ####################
+[filters]
+list = [ "lextreme", "lpro", "uvir", "haoiii"]
+
+[lextreme]
+name = "Optolong L-eXtreme"
+synonyms = [ "extr" ]
+
+[lpro]
+name = "Optolong L-Pro"
+synonyms = [ "lpro" ]
+
+[uvir]
+name = "Optolong UV/IR"
+synonyms = [ "uvir" ]
+
+[haoiii]
+name = "Altair Ha Oii 4nm" 
+synonyms = [ "haoiii" ]
+
+#extr = "Optolong L-eXtreme"
+#lpro = "Optolong L-Pro"
+#haoiii=Altair Ha Oii (4nm)
+

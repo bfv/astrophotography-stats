@@ -17,7 +17,7 @@ class PhotoDir:
         for f in files:
             try:
                 file = FitsFile(f, target=self.target)
-                if file.is_fits :
+                if file.is_light:
                     self.photos.append(file)
             except:
                 pass

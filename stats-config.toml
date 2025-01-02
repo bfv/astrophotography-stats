@@ -1,6 +1,6 @@
 [files]
-defaultdir = 'd:\onedrive\_2023'
-excludedirs = [ "various" ]
+defaultdir = 'C:\Users\bronco\OneDrive\astro\_2024'
+excludedirs = [ "various", "flats" ]
 
 #################### telescopes ####################
 [telescopes]

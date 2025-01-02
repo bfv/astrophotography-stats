@@ -30,7 +30,15 @@ class FitsFile:
             self.dec = hdul[0].header['DEC']
         except:
             pass
-
+        
+        try:
+            self.is_flat = hdul[0].header['OBJECT'] == "FlatWizard"
+            self.is_dark = hdul[0].header['OBJECT'] == "Dark"
+            self.is_bias = hdul[0].header['OBJECT'] == "Bias"
+            self.is_light = not (self.is_flat or self.is_dark or self.is_bias)
+        except:
+            pass
+            
         # derived
         self.date = self.__get_date(self.observation_date)
         self.software = self.__get_software(hdul)
